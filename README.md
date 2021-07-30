@@ -5,7 +5,7 @@ Sets up an EC2 instance with a number of tools preinstalled.
 Prerequisites: 
 * have docker installed (w/o having to run it as root)
 * the user running this needs `~/.aws/credentials` to be present
-* the user running this needs `~/.ssh/id_rsa.pub` to be present - it's the key that will be deployed as an authorized key
+* the user running this needs `~/.ssh/id_rsa.pub` to be present - it's the key that will be deployed as an authorized key; when in doubt, create a fresh key using `ssh-keygen`.
 * supports Darwin and Linux.
 
 ## Running it
