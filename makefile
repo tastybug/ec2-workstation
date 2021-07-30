@@ -8,7 +8,10 @@ else
 	USER_HOME := /home/$(shell whoami)
 endif
 ifeq ($(shell ! test -d $(USER_HOME)/.aws && echo missing), missing)
-	$(error .aws folder required at $(USER_HOME))
+	$(error folder ~/.aws folder required)
+endif
+ifeq ($(shell ! test -f $(USER_HOME)/.ssh/id_rsa.pub && echo missing), missing)
+	$(error file ~/.ssh/id_rsa.pub required)
 endif
 SSH_DIR := $(USER_HOME)/.ssh
 
