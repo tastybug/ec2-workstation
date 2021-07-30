@@ -1,5 +1,6 @@
 .DS_Store
 .terraform
 .terraform.*
+terraform.tfst*
 id_rsa.pub
 .*.swp
