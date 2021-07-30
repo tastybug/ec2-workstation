@@ -2,7 +2,10 @@
 
 Sets up an EC2 instance with a number of tools preinstalled. 
 
-Prerequisites: Have docker installed; run it on Darwin or Linux.
+Prerequisites: 
+* have docker installed (w/o having to run it as root)
+* the user running this needs `~/.aws/credentials` to be present
+* supports Darwin and Linux.
 
 ## Running it
 
@@ -20,3 +23,6 @@ After `apply`, you'll be presented with the IP. Connect with `ssh ubuntu@1.2.3.4
 
 Check and adapt [provision.sh](./provision.sh).
 
+## Gotchas
+
+* if docker is to be executed with root privileges, don't run `sudo make X`, otherwise the script expects `/root/.aws` to be present

@@ -7,6 +7,9 @@ ifeq ($(shell uname -s), Darwin)
 else
 	USER_HOME := /home/$(shell whoami)
 endif
+ifeq ($(shell ! test -d $(USER_HOME)/.aws && echo missing), missing)
+	$(error .aws folder required at $(USER_HOME))
+endif
 SSH_DIR := $(USER_HOME)/.ssh
 
 # commands
