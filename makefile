@@ -16,8 +16,8 @@ endif
 SSH_DIR := $(USER_HOME)/.ssh
 
 # commands
-SSH_ARG=-var="pubkey=${PWD}/id_rsa.pub"
-TF=docker run --rm -i -t -v ${PWD}:${PWD} -v $(SSH_DIR)/id_rsa.pub:$(PWD)/id_rsa.pub -w ${PWD} -e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) -e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) -e AWS_DEFAULT_REGION=$(AWS_DEFAULT_REGION) hashicorp/terraform:light
+SSH_ARG=-var="pubkey=${USER_HOME}/.ssh/id_rsa.pub"
+TF=env AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) AWS_DEFAULT_REGION=$(AWS_DEFAULT_REGION) terraform
 TF_INIT=$(TF) init
 TF_PLAN=$(TF) plan $(SSH_ARG)
 TF_APPLY=$(TF) apply $(SSH_ARG)
@@ -31,3 +31,5 @@ apply:
 	$(TF_APPLY)
 destroy:
 	$(TF_DESTROY)
+connect:
+	ssh ubuntu@$(shell terraform output -raw instance_public_ip)
